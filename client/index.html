@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="description" content="Streakify - Stay productive with tasks, goals, Pomodoro timer, and streak tracking. 100% offline-first PWA." />
+    <meta name="keywords" content="productivity, tasks, goals, pomodoro, habits, streaks, offline, PWA" />
+    <meta name="author" content="Streakify" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="Streakify" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Streakify" />
+    <meta name="msapplication-TileColor" content="#0891b2" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#0891b2" />
+    <meta name="msapplication-navbutton-color" content="#0891b2" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:title" content="Streakify - Productivity & Habit Tracker" />
+    <meta property="og:description" content="Stay productive with tasks, goals, Pomodoro timer, and streak tracking. 100% offline-first PWA." />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="/" />
+    <meta property="twitter:title" content="Streakify - Productivity & Habit Tracker" />
+    <meta property="twitter:description" content="Stay productive with tasks, goals, Pomodoro timer, and streak tracking. 100% offline-first PWA." />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0idXJsKCNncmFkaWVudDBfbGluZWFyXzFfMSkiLz4KPHBhdGggZD0iTTE2IDlDMTkuMzEgOSAyMiAxMS42OSAyMiAxNVYxN0MyMiAyMC4zMSAxOS4zMSAyMyAxNiAyM0MxMi42OSAyMyAxMCAyMC4zMSAxMCAxN1YxNUMxMCAxMS42OSAxMi42OSA5IDE2IDlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTQgMTVMMTUgMTZMMTggMTMiIHN0cm9rZT0iIzA4OTFiMiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDBfbGluZWFyXzFfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMzIiIHkyPSIzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjMEU3NDkwIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzA4OTFiMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iMzYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik05MCA0N0M3My44IDQ3IDExNCA1OC4yIDExNCA3M1YxMDdDMTE0IDEyMS44IDEwNi4yIDEzMyA5MCAxMzNDNzMuOCAxMzMgNjYgMTIxLjggNjYgMTA3VjczQzY2IDU4LjIgNzMuOCA0NyA5MCA0N1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik04MSA3OUw4NSA4M0w5NiA3MiIgc3Ryb2tlPSIjMDg5MWIyIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDBfbGluZWFyXzFfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMTgwIiB5Mj0iMTgwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwRTc0OTAiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDg5MWIyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- Fallback for JS disabled -->
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+      <style>
+        .js-only { display: none !important; }
+        .no-js-message {
+          display: block !important;
+          text-align: center;
+          padding: 2rem;
+          margin: 2rem;
+          background: #fef3c7;
+          border: 1px solid #f59e0b;
+          border-radius: 0.5rem;
+          color: #92400e;
+        }
+      </style>
+    </noscript>
+    
+    <title>Streakify - Productivity & Habit Tracker</title>
+  </head>
+  <body>
+    <!-- No JavaScript fallback -->
+    <noscript>
+      <div class="no-js-message">
+        <h1>JavaScript Required</h1>
+        <p>Streakify requires JavaScript to function properly. Please enable JavaScript in your browser settings and refresh the page.</p>
+      </div>
+    </noscript>
+    
+    <!-- App root -->
+    <div id="root" class="js-only"></div>
+    
+    <!-- Loading screen -->
+    <div id="loading-screen" style="position: fixed; inset: 0; background: white; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+      <div style="text-align: center;">
+        <div style="width: 48px; height: 48px; margin: 0 auto 16px; background: linear-gradient(135deg, #0e7490, #0891b2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 7C15.31 7 18 9.69 18 13V15C18 18.31 15.31 21 12 21C8.69 21 6 18.31 6 15V13C6 9.69 8.69 7 12 7Z" fill="white"/>
+            <path d="M10 13L11.5 14.5L15 11" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div style="color: #374151; font-weight: 600; margin-bottom: 8px;">Streakify</div>
+        <div style="color: #6b7280; font-size: 14px;">Loading your productivity dashboard...</div>
+      </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Hide loading screen once app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transition = 'opacity 0.3s ease';
+            setTimeout(function() {
+              loadingScreen.remove();
+            }, 300);
+          }
+        }, 500);
+      });
+    </script>
+    
+    <!-- Install PWA prompt -->
+    <script>
+      let deferredPrompt;
+      
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('PWA install prompt available');
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show custom install button if desired
+        // You can implement this in your React app
+      });
+      
+      window.addEventListener('appinstalled', (evt) => {
+        console.log('PWA was installed');
+      });
+    </script>
+    
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>

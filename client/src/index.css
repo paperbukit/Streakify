@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(240, 10%, 3.9%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(240, 10%, 3.9%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(186, 81%, 36%);
+  --primary-foreground: hsl(210, 100%, 99%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(222, 84%, 5%);
+  --accent: hsl(210, 40%, 98%);
+  --accent-foreground: hsl(222, 84%, 5%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(186, 81%, 36%);
+  --radius: 0.75rem;
+  
+  /* Custom aqua/teal color palette */
+  --aqua-50: hsl(180, 100%, 98%);
+  --aqua-100: hsl(180, 54%, 90%);
+  --aqua-200: hsl(180, 44%, 83%);
+  --aqua-300: hsl(180, 34%, 71%);
+  --aqua-400: hsl(186, 81%, 36%);
+  --aqua-500: hsl(186, 95%, 27%);
+  --aqua-600: hsl(186, 100%, 22%);
+  --aqua-700: hsl(186, 100%, 17%);
+  --aqua-800: hsl(186, 100%, 12%);
+  --aqua-900: hsl(186, 100%, 7%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(186, 81%, 36%);
+  --primary-foreground: hsl(210, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-gray-800 dark:text-gray-100;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .aqua-50 {
+    background-color: var(--aqua-50);
+  }
+  
+  .aqua-100 {
+    background-color: var(--aqua-100);
+  }
+  
+  .aqua-200 {
+    background-color: var(--aqua-200);
+  }
+  
+  .aqua-300 {
+    background-color: var(--aqua-300);
+  }
+  
+  .aqua-400 {
+    background-color: var(--aqua-400);
+  }
+  
+  .aqua-500 {
+    background-color: var(--aqua-500);
+  }
+  
+  .aqua-600 {
+    background-color: var(--aqua-600);
+  }
+  
+  .aqua-700 {
+    background-color: var(--aqua-700);
+  }
+  
+  .aqua-800 {
+    background-color: var(--aqua-800);
+  }
+  
+  .aqua-900 {
+    background-color: var(--aqua-900);
+  }
+
+  .text-aqua-50 {
+    color: var(--aqua-50);
+  }
+  
+  .text-aqua-100 {
+    color: var(--aqua-100);
+  }
+  
+  .text-aqua-200 {
+    color: var(--aqua-200);
+  }
+  
+  .text-aqua-300 {
+    color: var(--aqua-300);
+  }
+  
+  .text-aqua-400 {
+    color: var(--aqua-400);
+  }
+  
+  .text-aqua-500 {
+    color: var(--aqua-500);
+  }
+  
+  .text-aqua-600 {
+    color: var(--aqua-600);
+  }
+  
+  .text-aqua-700 {
+    color: var(--aqua-700);
+  }
+  
+  .text-aqua-800 {
+    color: var(--aqua-800);
+  }
+  
+  .text-aqua-900 {
+    color: var(--aqua-900);
+  }
+
+  .border-aqua-50 {
+    border-color: var(--aqua-50);
+  }
+  
+  .border-aqua-100 {
+    border-color: var(--aqua-100);
+  }
+  
+  .border-aqua-200 {
+    border-color: var(--aqua-200);
+  }
+  
+  .border-aqua-300 {
+    border-color: var(--aqua-300);
+  }
+  
+  .border-aqua-400 {
+    border-color: var(--aqua-400);
+  }
+  
+  .border-aqua-500 {
+    border-color: var(--aqua-500);
+  }
+  
+  .border-aqua-600 {
+    border-color: var(--aqua-600);
+  }
+  
+  .border-aqua-700 {
+    border-color: var(--aqua-700);
+  }
+  
+  .border-aqua-800 {
+    border-color: var(--aqua-800);
+  }
+  
+  .border-aqua-900 {
+    border-color: var(--aqua-900);
+  }
+
+  .sidebar-transition {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover {
+    transition: all 0.2s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(8, 145, 178, 0.15);
+  }
+
+  .progress-ring {
+    transform: rotate(-90deg);
+  }
+
+  .progress-ring-fill {
+    transition: stroke-dashoffset 0.5s ease;
+  }
+
+  .notification-slide {
+    animation: slideIn 0.3s ease;
+  }
+
+  .level-progress {
+    background: linear-gradient(90deg, var(--aqua-500), var(--aqua-300));
+  }
+
+  .streak-flame {
+    animation: flicker 2s infinite alternate;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flicker {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+}
