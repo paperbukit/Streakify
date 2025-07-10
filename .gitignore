@@ -4,3 +4,42 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Netlify
+.netlify
+*.log
+
+# Build output
+build
+coverage
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# VSCode
+.vscode/
+.history/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env
+.env
+.env.*
+
+# Misc
+*.local
+*.sublime-workspace
+*.sublime-project
+.idea/

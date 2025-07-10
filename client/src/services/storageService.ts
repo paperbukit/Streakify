@@ -9,9 +9,44 @@ const STORAGE_KEYS = {
   SETTINGS: 'streakify_settings',
 } as const;
 
+// Check if we're in development or production
+const USE_API = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+const API_BASE = USE_API ? '/api' : '';
+
 class StorageService {
+  private async apiRequest<T>(endpoint: string, options?: RequestInit): Promise<T> {
+    if (!USE_API) {
+      throw new Error('API not available in development');
+    }
+    
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+      ...options,
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.statusText}`);
+    }
+    
+    return response.json();
+  }
+
   private async getItem<T>(key: string, defaultValue: T): Promise<T> {
     try {
+      // Try API first if available
+      if (USE_API) {
+        try {
+          const response = await this.apiRequest<{ data: T }>(`/storage/${key}`);
+          return response.data || defaultValue;
+        } catch (error) {
+          console.warn('API storage failed, falling back to localStorage:', error);
+        }
+      }
+      
+      // Fallback to localStorage
       const item = localStorage.getItem(key);
       if (!item) return defaultValue;
       
@@ -26,10 +61,23 @@ class StorageService {
 
   private async setItem<T>(key: string, value: T): Promise<void> {
     try {
+      // Try API first if available
+      if (USE_API) {
+        try {
+          await this.apiRequest(`/storage/${key}`, {
+            method: 'POST',
+            body: JSON.stringify(value),
+          });
+        } catch (error) {
+          console.warn('API storage failed, falling back to localStorage:', error);
+        }
+      }
+      
+      // Always save to localStorage as backup
       localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.error(`Error saving ${key}:`, error);
-      throw error;
+      // Don't throw error to prevent UI crashes
     }
   }
 

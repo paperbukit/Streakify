@@ -61,6 +61,17 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        aqua: {
+          100: "var(--aqua-100)",
+          200: "var(--aqua-200)",
+          300: "var(--aqua-300)",
+          400: "var(--aqua-400)",
+          500: "var(--aqua-500)",
+          600: "var(--aqua-600)",
+          700: "var(--aqua-700)",
+          800: "var(--aqua-800)",
+          900: "var(--aqua-900)",
+        },
       },
       keyframes: {
         "accordion-down": {

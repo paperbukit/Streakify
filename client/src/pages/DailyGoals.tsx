@@ -27,7 +27,12 @@ export default function DailyGoals() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.title.trim()) return;
+    console.log('Daily goal form submitted with data:', formData);
+    
+    if (!formData.title.trim()) {
+      console.log('Goal title is empty, returning');
+      return;
+    }
 
     const goalData = {
       ...formData,
@@ -35,20 +40,28 @@ export default function DailyGoals() {
       isCompleted: false,
     };
 
-    if (editingGoal) {
-      await updateDailyGoal(editingGoal.id, goalData);
-      setEditingGoal(null);
-    } else {
-      await addDailyGoal(goalData);
-    }
+    console.log('About to add daily goal:', goalData);
 
-    setFormData({
-      title: '',
-      description: '',
-      targetCount: 1,
-      xpReward: 30,
-    });
-    setIsCreateDialogOpen(false);
+    try {
+      if (editingGoal) {
+        await updateDailyGoal(editingGoal.id, goalData);
+        setEditingGoal(null);
+        console.log('Goal updated successfully');
+      } else {
+        await addDailyGoal(goalData);
+        console.log('Goal added successfully');
+      }
+
+      setFormData({
+        title: '',
+        description: '',
+        targetCount: 1,
+        xpReward: 30,
+      });
+      setIsCreateDialogOpen(false);
+    } catch (error) {
+      console.error('Error adding/updating goal:', error);
+    }
   };
 
   const handleEdit = (goal: DailyGoal) => {

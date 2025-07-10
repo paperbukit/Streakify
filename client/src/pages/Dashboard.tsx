@@ -14,9 +14,11 @@ import {
   Plus 
 } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { useLocation } from "wouter";
 
 export default function Dashboard() {
-  const { profile, tasks, dailyGoals, pomodoroSessions, setActiveView } = useApp();
+  const { profile, tasks, dailyGoals, pomodoroSessions } = useApp();
+  const [_, setLocation] = useLocation();
 
   const totalXP = profile?.totalXP || 0;
   const currentLevel = calculateLevel(totalXP);
@@ -84,7 +86,7 @@ export default function Dashboard() {
               Daily Goals
             </h3>
             <Button
-              onClick={() => setActiveView('goals')}
+              onClick={() => setLocation('/goals')}
               className="bg-aqua-100 dark:bg-aqua-900/20 text-aqua-700 dark:text-aqua-400 hover:bg-aqua-200 dark:hover:bg-aqua-900/30"
               size="sm"
             >
@@ -100,7 +102,7 @@ export default function Dashboard() {
                   No daily goals set yet
                 </p>
                 <Button
-                  onClick={() => setActiveView('goals')}
+                  onClick={() => setLocation('/goals')}
                   className="bg-aqua-500 hover:bg-aqua-600 text-white"
                 >
                   Create Your First Goal
@@ -122,7 +124,7 @@ export default function Dashboard() {
             Recent Tasks
           </h3>
           <Button
-            onClick={() => setActiveView('tasks')}
+            onClick={() => setLocation('/tasks')}
             className="bg-aqua-100 dark:bg-aqua-900/20 text-aqua-700 dark:text-aqua-400 hover:bg-aqua-200 dark:hover:bg-aqua-900/30"
             size="sm"
           >
@@ -138,7 +140,7 @@ export default function Dashboard() {
                 No tasks created yet
               </p>
               <Button
-                onClick={() => setActiveView('tasks')}
+                onClick={() => setLocation('/tasks')}
                 className="bg-aqua-500 hover:bg-aqua-600 text-white"
               >
                 Create Your First Task

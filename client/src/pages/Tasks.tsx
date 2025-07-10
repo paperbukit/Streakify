@@ -23,7 +23,7 @@ export default function Tasks() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    priority: TaskPriority.MEDIUM,
+    priority: TaskPriority.MEDIUM as TaskPriority,
     tags: [] as string[],
     hasQuantity: false,
     targetCount: 1,
@@ -45,7 +45,12 @@ export default function Tasks() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.title.trim()) return;
+    console.log('Form submitted with data:', formData);
+    
+    if (!formData.title.trim()) {
+      console.log('Title is empty, returning');
+      return;
+    }
 
     const taskData = {
       ...formData,
@@ -54,24 +59,32 @@ export default function Tasks() {
       currentCount: 0,
     };
 
-    if (editingTask) {
-      await updateTask(editingTask.id, taskData);
-      setEditingTask(null);
-    } else {
-      await addTask(taskData);
-    }
+    console.log('About to add task:', taskData);
 
-    setFormData({
-      title: '',
-      description: '',
-      priority: TaskPriority.MEDIUM,
-      tags: [],
-      hasQuantity: false,
-      targetCount: 1,
-      xpReward: 10,
-      dueDate: '',
-    });
-    setIsCreateDialogOpen(false);
+    try {
+      if (editingTask) {
+        await updateTask(editingTask.id, taskData);
+        setEditingTask(null);
+        console.log('Task updated successfully');
+      } else {
+        await addTask(taskData);
+        console.log('Task added successfully');
+      }
+
+      setFormData({
+        title: '',
+        description: '',
+        priority: TaskPriority.MEDIUM,
+        tags: [],
+        hasQuantity: false,
+        targetCount: 1,
+        xpReward: 10,
+        dueDate: '',
+      });
+      setIsCreateDialogOpen(false);
+    } catch (error) {
+      console.error('Error adding/updating task:', error);
+    }
   };
 
   const handleEdit = (task: Task) => {

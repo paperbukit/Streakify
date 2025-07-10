@@ -88,13 +88,19 @@ export function PomodoroTimer() {
 
   const resetTimer = () => {
     setIsRunning(false);
-    setTimeLeft(getSessionDuration() * 60);
+    const duration = sessionType === 'work' ? settings.pomodoroLength : 
+                    sessionType === 'short' ? settings.shortBreakLength : 
+                    settings.longBreakLength;
+    setTimeLeft(duration * 60);
   };
 
   const switchSession = (type: 'work' | 'short' | 'long') => {
     setSessionType(type);
-    setTimeLeft(getSessionDuration() * 60);
     setIsRunning(false);
+    const newDuration = type === 'work' ? settings.pomodoroLength : 
+                       type === 'short' ? settings.shortBreakLength : 
+                       settings.longBreakLength;
+    setTimeLeft(newDuration * 60);
   };
 
   return (

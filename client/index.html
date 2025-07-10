@@ -80,69 +80,172 @@
     <div id="root" class="js-only"></div>
     
     <!-- Loading screen -->
-    <div id="loading-screen" style="position: fixed; inset: 0; background: linear-gradient(135deg, #e3fdfd, #cbf1f5); display: flex; align-items: center; justify-content: center; z-index: 9999;">
-      <div style="text-align: center; max-width: 300px; padding: 2rem;">
-        <!-- Animated logo -->
-        <div style="width: 80px; height: 80px; margin: 0 auto 24px; position: relative;">
-          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #0e7490, #0891b2); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(8, 145, 178, 0.3); animation: logoFloat 2s ease-in-out infinite;">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 7C15.31 7 18 9.69 18 13V15C18 18.31 15.31 21 12 21C8.69 21 6 18.31 6 15V13C6 9.69 8.69 7 12 7Z" fill="white"/>
-              <path d="M10 13L11.5 14.5L15 11" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <!-- Pulsing ring -->
-          <div style="position: absolute; inset: -8px; border: 3px solid rgba(8, 145, 178, 0.3); border-radius: 24px; animation: pulseRing 2s ease-in-out infinite;"></div>
+    <div id="loading-screen" style="position: fixed; inset: 0; background: linear-gradient(135deg, #e0f2fe, #67e8f9); display: flex; align-items: center; justify-content: center; z-index: 9999; overflow: hidden;">
+      <div class="loader-container">
+        <div class="streak-animation">
+          <div class="streak-line"></div>
+          <div class="streak-line"></div>
+          <div class="streak-line"></div>
+          <div class="streak-line"></div>
+          <div class="streak-line"></div>
         </div>
         
-        <!-- App title -->
-        <div style="color: #0e7490; font-weight: 700; font-size: 32px; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Streakify</div>
+        <!-- App title with gradient animation -->
+        <div class="app-title">Streakify</div>
         
-        <!-- Subtitle -->
-        <div style="color: #0891b2; font-size: 16px; margin-bottom: 24px; font-weight: 500;">Productivity & Habit Tracker</div>
+        <!-- Subtitle with fade-in -->
+        <div class="app-subtitle">Productivity & Habit Tracker</div>
         
-        <!-- Loading animation -->
-        <div style="display: flex; justify-content: center; align-items: center; gap: 4px; margin-bottom: 16px;">
-          <div style="width: 8px; height: 8px; background: #0891b2; border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite; animation-delay: 0s;"></div>
-          <div style="width: 8px; height: 8px; background: #0891b2; border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite; animation-delay: 0.2s;"></div>
-          <div style="width: 8px; height: 8px; background: #0891b2; border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite; animation-delay: 0.4s;"></div>
+        <!-- Progress bar -->
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
         </div>
-        
-        <!-- Loading text -->
-        <div style="color: #71c9ce; font-size: 14px; font-weight: 500;">Setting up your workspace...</div>
       </div>
     </div>
     
     <!-- Loading animations -->
     <style>
-      @keyframes logoFloat {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+      .loader-container {
+        text-align: center;
+        max-width: 300px;
+        padding: 2rem;
       }
       
-      @keyframes pulseRing {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.1); opacity: 0.7; }
-        100% { transform: scale(1); opacity: 1; }
+      .streak-animation {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 32px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: rotate(45deg);
       }
       
-      @keyframes loadingDot {
-        0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-        40% { transform: scale(1.2); opacity: 1; }
+      .streak-line {
+        position: absolute;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(90deg, #0891b2, #06b6d4, #0891b2);
+        background-size: 200% auto;
+        animation: gradientFlow 2s ease infinite, streakGrow 1.6s ease-in-out infinite;
+        border-radius: 3px;
+        opacity: 0;
+      }
+      
+      .streak-line:nth-child(1) {
+        transform: rotate(0deg);
+        animation-delay: 0s;
+      }
+      
+      .streak-line:nth-child(2) {
+        transform: rotate(45deg);
+        animation-delay: 0.2s;
+      }
+      
+      .streak-line:nth-child(3) {
+        transform: rotate(90deg);
+        animation-delay: 0.4s;
+      }
+      
+      .streak-line:nth-child(4) {
+        transform: rotate(135deg);
+        animation-delay: 0.6s;
+      }
+      
+      .streak-line:nth-child(5) {
+        transform: rotate(180deg);
+        animation-delay: 0.8s;
+      }
+      
+      .app-title {
+        color: #0891b2;
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 12px;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(90deg, #0891b2, #06b6d4, #0891b2);
+        background-size: 200% auto;
+        animation: gradientFlow 3s ease infinite;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientFlow 3s ease infinite, fadeIn 0.8s ease-in-out;
+      }
+      
+      .app-subtitle {
+        color: #0e7490;
+        font-size: 18px;
+        margin-bottom: 32px;
+        font-weight: 500;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-in-out 0.3s forwards;
+      }
+      
+      .progress-bar {
+        height: 4px;
+        width: 100%;
+        background-color: rgba(14, 116, 144, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #0891b2, #06b6d4);
+        border-radius: 2px;
+        animation: fillProgress 2s ease-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes gradientFlow {
+        0% { background-position: 0% center; }
+        50% { background-position: 100% center; }
+        100% { background-position: 0% center; }
+      }
+      
+      @keyframes fillProgress {
+        0% { width: 0%; }
+        50% { width: 70%; }
+        100% { width: 100%; }
+      }
+      
+      @keyframes streakGrow {
+        0% { transform: scale(0.2); opacity: 0; }
+        50% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(0.2); opacity: 0; }
       }
       
       /* Dark mode support for loading screen */
       @media (prefers-color-scheme: dark) {
         #loading-screen {
-          background: linear-gradient(135deg, #134e4a, #0f766e) !important;
+          background: linear-gradient(135deg, #0f172a, #0c4a6e) !important;
         }
-        #loading-screen div[style*="color: #0e7490"] {
-          color: #5eead4 !important;
+        
+        .app-title {
+          background: linear-gradient(90deg, #38bdf8, #0ea5e9, #38bdf8);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
         }
-        #loading-screen div[style*="color: #0891b2"] {
+        
+        .app-subtitle {
           color: #7dd3fc !important;
         }
-        #loading-screen div[style*="color: #71c9ce"] {
-          color: #a7f3d0 !important;
+        
+        .streak-line {
+          background: linear-gradient(90deg, #38bdf8, #0ea5e9, #38bdf8);
+          background-size: 200% auto;
+        }
+        
+        .progress-fill {
+          background: linear-gradient(90deg, #38bdf8, #0ea5e9);
         }
       }
     </style>
@@ -157,12 +260,13 @@
           const loadingScreen = document.getElementById('loading-screen');
           if (loadingScreen) {
             loadingScreen.style.opacity = '0';
-            loadingScreen.style.transition = 'opacity 0.3s ease';
+            loadingScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            loadingScreen.style.transform = 'scale(1.05)';
             setTimeout(function() {
               loadingScreen.remove();
-            }, 300);
+            }, 800);
           }
-        }, 500);
+        }, 800); // Wait a bit longer to show the animation
       });
     </script>
     
