@@ -1,6 +1,6 @@
 # Streakify
 
-[![Deploy on Netlify](https://www.netlify.com/img/deploy/button.svg)](https://streakify.netlify.app/)
+[![View on Netlify](https://www.netlify.com/img/deploy/button.svg)](https://streakify-paperbukit.netlify.app/)
 
 A modern productivity and habit tracker app featuring tasks, daily goals, Pomodoro timer, streaks, XP/leveling, and beautiful UI. Built with React, Vite, TypeScript, and Netlify Functions.
 
